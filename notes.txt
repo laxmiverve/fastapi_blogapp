@@ -1,0 +1,33 @@
+When you need to send data from a client (let's say, a browser) to your API, you send it as a request body.
+
+The response body is the actual content sent back to the client as part of the HTTP response.
+
+A foreign key (FK) is a column or group of columns in a relational database table that links to a column in another table.
+Foreign keys link together two or more tables in a relational database.
+
+In this every blog should related to a user so we have create a a relationship between blogs and user 
+
+
+
+in FastAPI sqlalchemy models called models
+Models are typically used to define the structure of your database tables. They represent how data is stored in your database.
+Code: 
+class Blog(Base):
+    __tablename__ = 'blogs'
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    body = Column(String)
+    
+    
+    
+In FastAPI pydantic models are called schemas. 
+Schemas are used for data validation and serialization. They define the shape of the data that is sent to and received from the API endpoints.
+Code -> class BlogSchema(BaseModel):
+    		title: str
+    		body: str
+    
+    
+    
+Whenever we say response model we talked about the pydantic in simple word talked about the schemas.
+Response model is a way to define the structure and data types of the response that an endpoint will return.
