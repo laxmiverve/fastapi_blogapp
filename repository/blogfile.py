@@ -4,6 +4,8 @@ from models.blog_model import BlogModel
 from models.user_model import UserModel
 from fastapi import HTTPException, status
 
+
+
 # def get_all(db: Session):
 #     blogs =  db.query(BlogModel).all()
 #     return blogs
@@ -67,8 +69,19 @@ def delete(id:int, db:Session):
 #     return blogs
 
 
-def get_user_blogs(user_id: int, skip: int, limit: int, db:Session):
-      blogs = db.query(BlogModel).options(
+
+
+# Implement pagination 
+# def get_user_blogs(user_id: int, skip: int, limit: int, db:Session):
+#       blogs = db.query(BlogModel).options(
+#         joinedload(BlogModel.creator).load_only(UserModel.id, UserModel.name, UserModel.email)
+#     ).filter(BlogModel.user_id == user_id).offset(skip).limit(limit).all()
+#       return blogs
+
+
+# Implement pagination 
+def get_user_blogs(user_id: int, db: Session):
+    blogs = db.query(BlogModel).options(
         joinedload(BlogModel.creator).load_only(UserModel.id, UserModel.name, UserModel.email)
-    ).filter(BlogModel.user_id == user_id).offset(skip).limit(limit).all()
-      return blogs
+    ).filter(BlogModel.user_id == user_id).all()
+    return blogs
