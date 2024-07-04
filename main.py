@@ -3,7 +3,7 @@ from database import engine
 from database import Base
 from routers import blog, user, authentication
 
-from fastapi_pagination import add_pagination, Page
+from fastapi_pagination import add_pagination
 
 
 app = FastAPI()
