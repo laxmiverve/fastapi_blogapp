@@ -7,6 +7,10 @@ from repository import blogfile
 
 
 
+from fastapi_pagination import Page, paginate
+
+
+
 router = APIRouter(
     # prefix="/blog",     // you can remove all the blog word from the route
     tags=["Blogs"]
@@ -42,8 +46,18 @@ def delete(id, db: Session = Depends(get_db)):
 
 
 
-# fetch blogs by user id
-@router.get('/blogs/{user_id}', response_model=List[schemas.ShowBlog])
-def get_user_blogs(user_id: int, skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
-    return blogfile.get_user_blogs(user_id, skip, limit, db)
 
+# fetch blogs by user id 
+# implement pagination
+
+# @router.get('/blogs/{user_id}', response_model=List[schemas.ShowBlog])
+# def get_user_blogs(user_id: int, skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
+#     return blogfile.get_user_blogs(user_id, skip, limit, db)
+
+
+
+
+@router.get('/blogs/{user_id}', response_model=Page[schemas.ShowBlog])
+def get_user_blogs(user_id: int, db: Session = Depends(get_db)):
+    blogs = blogfile.get_user_blogs(user_id, db)
+    return paginate(blogs)
