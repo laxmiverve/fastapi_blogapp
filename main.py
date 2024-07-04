@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from database import engine
 from database import Base
 from routers import blog, user, authentication
-from fastapi_pagination import Page, add_pagination, paginate
 
+from fastapi_pagination import add_pagination, Page
 
 
 app = FastAPI()
