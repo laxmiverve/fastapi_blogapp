@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session, joinedload, Query
+from sqlalchemy.orm import Session, joinedload
 import schemas
 from models.blog_model import BlogModel
 from models.user_model import UserModel
