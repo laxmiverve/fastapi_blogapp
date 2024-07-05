@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.post('/login')
-def login(request: Login = Depends(), db:Session = Depends(database.get_db)):
+def login(request: OAuth2PasswordRequestForm = Depends(), db:Session = Depends(database.get_db)):
     user = db.query(UserModel).filter(UserModel.email == request.username).first()
 
     if not user:
