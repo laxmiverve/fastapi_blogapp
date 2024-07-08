@@ -1,1 +1,1 @@
-A fastapi blog management app
+A fastapi based blog management app
